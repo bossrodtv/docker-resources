@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:13-alpine
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: constrod
+      POSTGRES_PASSWORD: password
+
+  pgadmin:
+    image: dpage/pgadmin4:6
+    ports:
+      - '5050:5050'
+    volumes:
+      - postgres-pgadmin:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: constrod@constrod.me
+      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_LISTEN_PORT: 5050
+    depends_on:
+      - postgres
+
+volumes:
+  postgres-data:
+    name: postgres-data
+  postgres-pgadmin:
+    name: postgres-pgadmin
