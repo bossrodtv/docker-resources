@@ -1,6 +1,6 @@
 {
   "name": "docker-resources",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "repository": "https://github.com/bossrodtv/docker-resources",
   "bugs": {
     "url": "https://github.com/bossrodtv/docker-resources/issues"
