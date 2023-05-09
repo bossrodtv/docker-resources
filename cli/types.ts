@@ -1,8 +1,8 @@
 export type Options = {
   resource: string;
   build: boolean;
-  up: boolean;
-  down: boolean;
+  start: boolean;
+  stop: boolean;
   noCache: boolean;
   v: boolean;
   d: boolean;
