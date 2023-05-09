@@ -19,7 +19,8 @@ chmod ug+x .git/hooks/*
 - **(Optional):** Do this if you are using **nvm**.
 
 ```bash
-nvm use or nvm use 16.13.0
+nvm use # For MacOSX and Linux
+nvm use $(cat .nvmrc) # For windows (Git Bash)
 ```
 
 - Install dependencies.
@@ -32,8 +33,9 @@ pnpm i
 
 | List of resources |
 | :---------------- |
-| postgres          |
+| mysql             |
 | neo4j             |
+| postgres          |
 | redis             |
 
 ---
@@ -48,15 +50,15 @@ pnpm docker -r <resource_name> --build --no-cache # Build with cache
 - Run container.
 
 ```bash
-pnpm docker -r <resource_name> --up # Run in foreground
-pnpm docker -r <resource_name> --up -d # Run in background
+pnpm docker -r <resource_name> --start # Run in foreground
+pnpm docker -r <resource_name> --start -d # Run in background
 ```
 
 - Shutdown container.
 
 ```bash
-pnpm docker -r <resource_name> --down # Stop without volumes
-pnpm docker -r <resource_name> --down -v # Stop with volumes
+pnpm docker -r <resource_name> --stop # Stop without volumes
+pnpm docker -r <resource_name> --stop -v # Stop with volumes
 ```
 
 - Access the container.

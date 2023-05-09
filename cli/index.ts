@@ -7,14 +7,14 @@ import { runCommand } from './utils';
 const program = new Command();
 
 program
-  .version('10.0.0')
+  .version('1.0.0')
   .option('-r, --resource <name>', 'Name of the resource')
   .option('--build', 'Build the resource')
   .option(
-    '--up',
+    '--start',
     'Start the resource. Run in foreground by default. Add -d to run in detached mode.'
   )
-  .option('--down', 'Stop the resource')
+  .option('--stop', 'Stop the resource')
   .option('--no-cache', 'No cache')
   .option('-v', 'Includes the volume')
   .option('-d', 'Run in detached mode')
@@ -23,13 +23,13 @@ program
 const options = program.opts<Options>();
 
 const build = options.build ? 'build' : '';
-const up = options.up ? 'up' : '';
-const down = options.down ? 'down' : '';
+const start = options.start ? 'up' : '';
+const stop = options.stop ? 'down' : '';
 const noCache = options.noCache ? '--no-cache' : '';
 const volume = options.v ? '-v' : '';
 const detached = options.d ? '-d' : '';
 
-const dockerOptions = [build, up, down, noCache, volume, detached].filter(Boolean).join(' ');
+const dockerOptions = [build, start, stop, noCache, volume, detached].filter(Boolean).join(' ');
 
 const command = `docker compose -f ./resources/${options.resource}/docker-compose.yaml ${dockerOptions}`;
 
