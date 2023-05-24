@@ -4,7 +4,7 @@ For local development use only. Instead of manually installing each of these app
 
 ## Prerequisites
 
-- Download extension **ESLint** and **Prettier - Code formatter** in your VSCode.
+- Download extension **ESLint** and **Prettier ESLint** in your VSCode.
 - Install **node** >= 16.13.0
 - Install **pnpm** >= 7.17.0
 - Install **Docker Desktop**
