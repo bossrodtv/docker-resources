@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mysql:
-    image: mysql:8.0
+    image: mysql:8.0.32
     command: --default-authentication-plugin=mysql_native_password
     ports:
       - '3306:3306'
@@ -25,6 +25,11 @@ services:
       PHP_POST_MAX_SIZE: 20M
     depends_on:
       - mysql
+
+  adminer:
+    image: adminer:4.8.1
+    ports:
+      - 8081:8080
 
 volumes:
   mysql-data:
