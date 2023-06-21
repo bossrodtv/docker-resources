@@ -1,39 +1,87 @@
 #!/usr/bin/env node
 
-import { Command } from 'commander';
-import { Options } from './types';
-import { runCommand } from './utils';
+import chalk from 'chalk';
+import { execSync } from 'child_process';
+import clear from 'clear';
+import figlet from 'figlet';
+import fs from 'fs';
+import gradient from 'gradient-string';
+import inquirer from 'inquirer';
+import { join } from 'path';
 
-const program = new Command();
+/* Welcome Page */
+clear();
+console.log(gradient.mind(figlet.textSync('bossROD TV', { horizontalLayout: 'full' })));
 
-program
-  .version('1.0.0')
-  .option('-r, --resource <name>', 'Name of the resource')
-  .option('--build', 'Build the resource')
-  .option(
-    '--start',
-    'Start the resource. Run in foreground by default. Add -d to run in detached mode.'
-  )
-  .option('--stop', 'Stop the resource')
-  .option('--no-cache', 'No cache')
-  .option('-v', 'Includes the volume')
-  .option('-d', 'Run in detached mode')
-  .parse();
+console.log(chalk.cyanBright('Project: Docker Resources'));
+console.log(chalk.cyanBright('YouTube: https://youtube.com/bossrodtv'));
+console.log(chalk.cyanBright('GitHub: https://github.com/bossrodtv/docker-resources'));
+console.log('\n');
 
-const options = program.opts<Options>();
+const resourceFolderPath = join(__dirname, '../resources');
 
-const build = options.build ? 'build' : '';
-const start = options.start ? 'up' : '';
-const stop = options.stop ? 'down' : '';
-const noCache = options.noCache ? '--no-cache' : '';
-const volume = options.v ? '-v' : '';
-const detached = options.d ? '-d' : '';
+const resourceChoices = fs
+  .readdirSync(resourceFolderPath, { withFileTypes: true })
+  .filter(dirent => dirent.isDirectory())
+  .map(dirent => dirent.name);
 
-const dockerOptions = [build, start, stop, noCache, volume, detached].filter(Boolean).join(' ');
+/* Questions */
+function askAdditionalCommand() {
+  return inquirer.prompt<{ additionalCommand: string }>([
+    {
+      name: 'additionalCommand',
+      type: 'input',
+      message: 'Additional docker command?:',
+    },
+  ]);
+}
 
-const command = `docker compose -f ./resources/${options.resource}/docker-compose.yaml ${dockerOptions}`;
+function askResource() {
+  return inquirer.prompt<{ resourceName: string }>([
+    {
+      name: 'resourceName',
+      type: 'list',
+      message: 'Choose a resource:',
+      choices: resourceChoices,
+    },
+  ]);
+}
 
-console.log(`> ${command}`);
+function askAction() {
+  return inquirer.prompt<{ action: string }>([
+    {
+      name: 'action',
+      type: 'list',
+      message: 'What action do you want to perform?',
+      choices: ['up', 'down', 'build'],
+    },
+  ]);
+}
 
-const { error } = runCommand(command);
-if (error) process.exit(-1);
+/* Utils */
+function runCommand(command: string) {
+  try {
+    execSync(`${command}`, { stdio: 'inherit' });
+  } catch (error) {
+    return { error };
+  }
+  return { error: null };
+}
+
+/* Handler */
+async function run() {
+  const { resourceName } = await askResource();
+  const { action } = await askAction();
+  const { additionalCommand } = await askAdditionalCommand();
+
+  const command = `docker compose -f ./resources/${resourceName}/docker-compose.yaml ${action} ${additionalCommand}`;
+
+  const { error } = runCommand(command);
+
+  if (error) {
+    console.log(chalk.red('- Error running the command.'));
+    process.exit();
+  }
+}
+
+run();
