@@ -9,7 +9,9 @@ For local development use only. Instead of manually installing each of these app
 - Install **pnpm** 8.6.1
 - Install **Docker Desktop**
 
-- **(Required for MacOSX):** Run this to give permission husky to run pre-commit hook.
+---
+
+- **(Required for MacOSX):** Execute this command to grant Husky the necessary permissions to run the pre-commit hook.
 
 ```bash
 chmod ug+x .husky/*
@@ -20,7 +22,7 @@ chmod ug+x .git/hooks/*
 
 ```bash
 nvm use # For MacOSX and Linux
-nvm use $(cat .nvmrc) # For windows (Git Bash)
+nvm use $(cat .nvmrc) # For Windows (Git Bash)
 ```
 
 - Install dependencies.
