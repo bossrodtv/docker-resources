@@ -21,5 +21,8 @@ services:
 
 volumes:
   redis-data:
+    name: redis-data
   redis-conf:
+    name: redis-conf
   redis-insight-db:
+    name: redis-insight-db

@@ -1,12 +1,12 @@
 # Docker Resources
 
-For local development use only. Instead of manually installing each of these applications **(Postgres, MySQL, MongoDB & etc)** you can just install **Docker Desktop** and provide a `docker-compose.yaml` for your application and run/stop it in just one command.
+For local development use only. Instead of manually installing each of these applications **(Postgres, MySQL, MongoDB & etc)** you can just install **Docker Desktop** and provide a `docker-compose.yaml` for your tools.
 
 ## Prerequisites
 
 - Download extension **ESLint** and **Prettier ESLint** in your VSCode.
-- Install **node** >= 16.13.0
-- Install **pnpm** >= 7.17.0
+- Install **node** 16.14.2
+- Install **pnpm** 8.6.1
 - Install **Docker Desktop**
 
 - **(Required for MacOSX):** Run this to give permission husky to run pre-commit hook.
@@ -33,6 +33,7 @@ pnpm i
 
 | List of resources |
 | :---------------- |
+| mongodb           |
 | mysql             |
 | neo4j             |
 | postgres          |
@@ -40,33 +41,11 @@ pnpm i
 
 ---
 
-- Build container.
+- Run and choose which resource you want to start/stop/build.
+  - **up** - to start/run the resource.
+  - **down** - to stop/remove the resource.
+  - **build** - to build the resource.
 
 ```bash
-pnpm docker -r <resource_name> --build # Build without cache
-pnpm docker -r <resource_name> --build --no-cache # Build with cache
-```
-
-- Run container.
-
-```bash
-pnpm docker -r <resource_name> --start # Run in foreground
-pnpm docker -r <resource_name> --start -d # Run in background
-```
-
-- Shutdown container.
-
-```bash
-pnpm docker -r <resource_name> --stop # Stop without volumes
-pnpm docker -r <resource_name> --stop -v # Stop with volumes
-```
-
-- Access the container.
-
-```bash
-docker exec -it <container_name> bash
-```
-
-```bash
-docker logs <container_name>
+pnpm dev
 ```
