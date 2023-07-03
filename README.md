@@ -43,10 +43,9 @@ pnpm i
 
 ---
 
-- Run and choose which resource you want to start/stop/build.
+- Run and choose which resource you want to start or stop.
   - **up** - to start/run the resource.
   - **down** - to stop/remove the resource.
-  - **build** - to build the resource.
 
 ```bash
 pnpm dev

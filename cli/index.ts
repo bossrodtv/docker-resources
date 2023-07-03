@@ -53,7 +53,7 @@ function askAction() {
       name: 'action',
       type: 'list',
       message: 'What action do you want to perform?',
-      choices: ['up', 'down', 'build'],
+      choices: ['up', 'down'],
     },
   ]);
 }
