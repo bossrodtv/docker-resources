@@ -13,7 +13,7 @@ services:
   redis-insight:
     image: redislabs/redisinsight:1.13.1
     ports:
-      - '8001:8001'
+      - '6000:8001'
     volumes:
       - redis-insight-db:/db
     depends_on:
