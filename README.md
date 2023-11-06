@@ -48,5 +48,5 @@ pnpm i
   - **down** - to stop/remove the resource.
 
 ```bash
-pnpm dev
+pnpm start
 ```

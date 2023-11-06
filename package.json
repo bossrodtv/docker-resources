@@ -15,9 +15,8 @@
   "author": "Rodrick Alcantara <rialcantara21@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node -r tsconfig-paths/register ./cli/index.ts",
+    "start": "npx tsx ./cli/index.ts",
     "clean": "rm -rf ./dist",
-    "build": "pnpm clean && tsup ./cli/index.ts --format cjs,esm --dts",
     "release": "changeset tag",
     "format": "prettier --write ./cli/**/*.ts{,x}",
     "lint": "tsc",
@@ -43,14 +42,10 @@
     "@types/gradient-string": "^1.1.2",
     "@types/inquirer": "^9.0.3",
     "@types/node": "^18.16.19",
-    "concurrently": "^8.2.0",
     "cspell": "^6.31.1",
     "husky": "^6.0.0",
     "lint-staged": "^13.2.3",
     "prettier": "^2.8.8",
-    "ts-node": "^10.9.1",
-    "tsconfig-paths": "^4.2.0",
-    "tsup": "^6.7.0",
     "typescript": "^4.9.5"
   }
 }
