@@ -5,8 +5,8 @@ For local development use only. Instead of manually installing each of these app
 ## Prerequisites
 
 - Download extension **ESLint** and **Prettier ESLint** in your VSCode.
-- Install **node** ^18.16.1
-- Install **pnpm** ^8.6.1
+- Install **node** 18.16.1
+- Install **pnpm** 8.6.7
 - Install **Docker Desktop**
 
 ---

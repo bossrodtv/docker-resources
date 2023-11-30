@@ -19,18 +19,16 @@ jobs:
           fetch-depth: 0
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2.2.4
-        with:
-          version: 8.6.1
+        uses: pnpm/action-setup@v2.4.0
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 18.16.1
+          node-version-file: '.nvmrc'
           cache: 'pnpm'
 
-      - name: Install Packages
-        run: pnpm install --no-frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Create Release Pull Request or Publish
         id: changesets
