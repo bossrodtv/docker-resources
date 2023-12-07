@@ -18,13 +18,6 @@ chmod ug+x .husky/*
 chmod ug+x .git/hooks/*
 ```
 
-- **(Optional):** Do this if you are using **nvm**.
-
-```bash
-nvm use # For MacOSX and Linux
-nvm use $(cat .nvmrc) # For Windows (Git Bash)
-```
-
 - Install dependencies.
 
 ```bash
