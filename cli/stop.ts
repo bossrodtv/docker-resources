@@ -15,12 +15,12 @@ async function run() {
 
   const stopCommand = `docker compose -f ./resources/${resourceName}/docker-compose.yaml down ${additionalCommand}`;
 
-  customLog.info('Command', stopCommand);
+  customLog.info('Command: ', stopCommand);
 
   const { error: stopCommandError } = runCommand(stopCommand);
 
   if (stopCommandError) {
-    customLog.error('Error (Stop Docker Compose)', stopCommandError);
+    customLog.error('Error (Stop Docker Compose): ', stopCommandError);
     process.exit();
   }
 }
