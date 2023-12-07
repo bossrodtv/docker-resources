@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import chalk from 'chalk';
+import { customLog } from './utils/logger';
 import { askAdditionalCommand, askResource } from './utils/questions';
 import { runCommand } from './utils/run-command';
 import { welcomePage } from './utils/welcome';
@@ -15,14 +15,12 @@ async function run() {
 
   const startCommand = `docker compose -f ./resources/${resourceName}/docker-compose.yaml up ${additionalCommand}`;
 
-  console.log(chalk.bold(`> Command: `) + chalk.cyan(startCommand));
+  customLog.info('Command', startCommand);
 
   const { error: startCommandError } = runCommand(startCommand);
 
   if (startCommandError) {
-    console.log(
-      chalk.red(`! Error (Start Docker Compose): ${startCommand} >> ${startCommandError}`)
-    );
+    customLog.info('Error (Start Docker Compose)', startCommandError);
     process.exit();
   }
 }
