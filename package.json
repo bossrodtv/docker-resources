@@ -15,7 +15,8 @@
   "author": "Rodrick Alcantara <rialcantara21@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "npx tsx ./cli/index.ts",
+    "start": "npx tsx ./cli/start.ts",
+    "stop": "npx tsx ./cli/stop.ts",
     "clean": "rm -rf ./dist",
     "release": "changeset tag",
     "format": "prettier --write ./cli/**/*.ts{,x}",

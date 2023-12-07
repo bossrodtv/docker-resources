@@ -5,8 +5,8 @@ For local development use only. Instead of manually installing each of these app
 ## Prerequisites
 
 - Download extension **ESLint** and **Prettier ESLint** in your VSCode.
-- Install **node** 18.16.1
-- Install **pnpm** 8.6.7
+- Install **node** version (check the version in `.nvmrc`)
+- Install **pnpm** version (check the version in package.json: `packageManager`)
 - Install **Docker Desktop**
 
 ---
@@ -43,10 +43,16 @@ pnpm i
 
 ---
 
-- Run and choose which resource you want to start or stop.
-  - **up** - to start/run the resource.
-  - **down** - to stop/remove the resource.
+## Usage
+
+- Start the docker container.
 
 ```bash
 pnpm start
+```
+
+- Stop the docker container.
+
+```bash
+pnpm stop
 ```
