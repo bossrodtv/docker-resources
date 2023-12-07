@@ -15,6 +15,8 @@ async function run() {
 
   const startCommand = `docker compose -f ./resources/${resourceName}/docker-compose.yaml up ${additionalCommand}`;
 
+  console.log(chalk.bold(`> Command: `) + chalk.cyan(startCommand));
+
   const { error: startCommandError } = runCommand(startCommand);
 
   if (startCommandError) {

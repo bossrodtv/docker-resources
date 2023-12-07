@@ -13,14 +13,14 @@ async function run() {
   const { resourceName } = await askResource();
   const { additionalCommand } = await askAdditionalCommand();
 
-  const startCommand = `docker compose -f ./resources/${resourceName}/docker-compose.yaml down ${additionalCommand}`;
+  const stopCommand = `docker compose -f ./resources/${resourceName}/docker-compose.yaml down ${additionalCommand}`;
 
-  const { error: startCommandError } = runCommand(startCommand);
+  console.log(chalk.bold(`> Command: `) + chalk.cyan(stopCommand));
 
-  if (startCommandError) {
-    console.log(
-      chalk.red(`! Error (Stop Docker Compose): ${startCommand} >> ${startCommandError}`)
-    );
+  const { error: stopCommandError } = runCommand(stopCommand);
+
+  if (stopCommandError) {
+    console.log(chalk.red(`! Error (Stop Docker Compose): ${stopCommand} >> ${stopCommandError}`));
     process.exit();
   }
 }
